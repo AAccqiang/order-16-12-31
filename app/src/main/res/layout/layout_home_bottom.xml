@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/home_bg">
+
+
+    <TextView
+        android:id="@+id/home_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="33dp"
+        android:text="服务员： 123"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/home_btn_menu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+
+            android:orientation="vertical">
+
+            <ImageView
+
+                android:layout_height="60dp"
+                android:background="@mipmap/home_menu"
+                android:layout_width="90dp"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textColor="@drawable/btn_color"
+                android:text="菜单"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_btn_schedule"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="60dp"
+                android:background="@mipmap/home_schedule"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textColor="@drawable/btn_color"
+                android:text="订单进度"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_btn_add"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="60dp"
+                android:background="@mipmap/home_add"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textColor="@drawable/btn_color"
+                android:text="加单"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_btn_pay"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="60dp"
+                android:background="@mipmap/home_pay"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textColor="@drawable/btn_color"
+                android:text="结算"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_btn_more"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="60dp"
+                android:background="@mipmap/home_more1"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textColor="@drawable/btn_color"
+                android:text="更多"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

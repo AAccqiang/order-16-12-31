@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="130dp"
+    android:orientation="horizontal"
+    android:layout_marginRight="135dp">
+
+    <LinearLayout
+        android:id="@+id/ll_hot"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/tv_menu_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热菜"
+            android:textColor="@color/menu_font"
+            android:layout_marginRight="5dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/menu_hot"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cold"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/tv_menu_cold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="冷菜"
+            android:textColor="@color/menu_font"
+            android:layout_marginRight="5dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/menu_cold"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_soup"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/tv_menu_soup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="汤类"
+            android:textColor="@color/menu_font"
+            android:layout_marginRight="5dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/menu_soup"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/tv_menu_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="主食"
+            android:textColor="@color/menu_font"
+            android:layout_marginRight="5dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/menu_main"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_other"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/tv_menu_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="其他"
+            android:textColor="@color/menu_font"
+            android:layout_marginRight="5dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/menu_other"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

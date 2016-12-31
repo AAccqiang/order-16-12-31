@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="login_button_no">#eb525f</color>
+    <color name="login_alter">#E6E9E9</color>
+    <color name="login_user">#DDE1DD</color>
+    <color name="main_color">#EA6A76</color>
+
+    <drawable name="main_color1">#EA6A76</drawable>
+    <drawable name="main_color2">#fff0</drawable>
+    <drawable name="main_color3">#896961</drawable>
+    <drawable name="main_color4">#0ff</drawable>
+
+
+    <color name="actionBar_color">#F8646f</color>
+    <color name="menu_font">#dddddd</color>
+    
+</resources>

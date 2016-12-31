@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/logon_bg_transparent"
+        android:layout_marginTop="@dimen/login_bg_transparent_tOrB"
+        android:layout_marginBottom="@dimen/login_bg_transparent_tOrB"
+        android:layout_marginRight="@dimen/login_bg_transparent_LOrR"
+        android:layout_marginLeft="@dimen/login_bg_transparent_LOrR"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_alter_title"
+            android:textColor="@color/login_alter"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+
+            />
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/login_hx"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="9dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textColor="@color/login_user"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/alter_tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="001"
+            android:textColor="#FDFFFF"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+
+            />
+
+        <EditText
+            android:id="@+id/alter_et_oldpass"
+            android:layout_width="250dp"
+            android:layout_height="32dp"
+            android:hint="请输入原密码"
+            android:textSize="@dimen/et_size"
+            android:background="@drawable/logon_username_transparent"
+            android:layout_gravity="center_horizontal"
+            android:textColorHint="#AAA7A8"
+            android:paddingLeft="8dp"
+            android:inputType="textPassword"
+            android:layout_marginTop="5dp"
+            />
+        <EditText
+            android:id="@+id/alter_et_newpass"
+            android:layout_marginTop="17dp"
+            style="@style/login_alter_ET"
+            android:inputType="textPassword"
+            android:hint="请输入新密码"/>
+
+        <EditText
+            android:id="@+id/alter_et_newspass"
+            android:layout_marginTop="17dp"
+            style="@style/login_alter_ET"
+            android:inputType="textPassword"
+            android:hint="请重新输入新密码"/>
+
+        <Button
+            android:id="@+id/lg_btn"
+            android:layout_width="120dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_btn_login"
+            android:text="确定"
+            android:textColor="@android:color/white"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/tv_tableNum"
+          android:layout_width="25dp"
+          android:layout_height="20dp"
+          android:text="张三"
+          android:padding="1dp"
+          android:textSize="11sp">
+
+
+</TextView>

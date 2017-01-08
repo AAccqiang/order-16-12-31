@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:ndroid="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_marginTop="10dp"
+    >
+    <com.pkmmte.view.CircularImageView
+        android:id="@+id/iv_usericon"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@mipmap/menu_xia"
+        android:layout_centerVertical="true"
+        app:border="true"
+        app:border_color="#40EA6A76"
+        app:border_width="4dp"
+        android:layout_marginLeft="15dp"
+        />
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/tv_menu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="深海大龙虾"
+            android:layout_centerVertical="true"
+            android:textColor="@color/font_color"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_usericon"/>
+
+        <View
+            android:id="@+id/view1"
+            style="@style/schedle_view"
+            android:layout_toRightOf="@id/iv_usericon"
+            android:layout_marginLeft="90dp"
+            />
+
+        <FrameLayout
+            android:id="@+id/frameLayout_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/view1"
+            android:layout_centerVertical="true"
+            >
+            <include layout="@layout/layout_view_circle"/>
+            <TextView
+                style="@style/schedle_view_text"
+                android:text="下单"
+                />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/view2"
+            style="@style/schedle_view"
+            android:layout_toRightOf="@id/frameLayout_one"
+
+            />
+
+        <FrameLayout
+            android:id="@+id/frameLayout_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/view2"
+            android:layout_centerVertical="true"
+            >
+            <include layout="@layout/layout_view_circle"/>
+            <TextView
+                style="@style/schedle_view_text"
+                android:text="开炒"
+                />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/view3"
+            style="@style/schedle_view"
+            android:layout_toRightOf="@id/frameLayout_two"
+
+            />
+
+        <FrameLayout
+            android:id="@+id/frameLayout_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/view3"
+            android:layout_centerVertical="true"
+            >
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/view_break_circle"
+                android:layout_gravity="center"
+                />
+            <TextView
+                style="@style/schedle_view_text"
+                android:text="上菜"
+                />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/view4"
+            style="@style/schedle_view"
+            android:layout_width="65dp"
+            android:layout_height="1dp"
+            android:background="@color/view_color"
+            ndroid:layout_centerVertical="true"
+            android:layout_toRightOf="@id/frameLayout_three"
+            />
+
+        <Button
+            android:id="@+id/btn_queren_no"
+            android:layout_width="65dp"
+            android:layout_height="45dp"
+            android:background="@drawable/btn_bg_queren"
+            android:layout_toRightOf="@id/view4"
+            android:text="确认"
+            android:textColor="#eee"
+            android:textSize="13dp"
+            android:layout_centerVertical="true"/>
+
+
+
+
+
+</RelativeLayout>

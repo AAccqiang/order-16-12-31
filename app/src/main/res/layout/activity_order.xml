@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/anctionBar_height"
+        android:background="@color/actionBar_color"
+        android:gravity="center_vertical"
+        android:paddingRight="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:padding="5dp"
+            android:src="@mipmap/menu_back"
+
+            />
+
+
+        <Button
+            android:id="@+id/menu_ren"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/btn_back"
+            android:background="@drawable/selecet_btn_queren"
+            android:padding="7dp"
+            android:text="login"
+            android:textAllCaps="false"
+            android:textColor="#eee"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="250号桌订单"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_orderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="流水号：2016201620162016"
+            android:textColor="@android:color/white"
+            android:textSize="10dp"
+            />
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/re"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#eee"
+        ></android.support.v7.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/tv_two"
+            android:text="菜式共"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/tv_three"
+            android:text="8"
+            android:textColor="#eb6877"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="23dp"
+            android:layout_toLeftOf="@+id/tv_four"
+            android:text="份"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@+id/tv_five"
+            android:text="￥ "
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/btn_empty"
+            android:text="250.00"
+            android:textColor="#eb6877"
+
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btn_empty"
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/btn_down"
+            android:background="@drawable/selecet_btn_empty"
+            android:text="清空"
+            android:textSize="13dp"
+            android:textColor="@color/main_color"/>
+
+
+        <Button
+            android:id="@+id/btn_down"
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:textSize="13dp"
+            android:background="@drawable/selector_btn_login"
+            android:text="下单"
+            android:textColor="@android:color/white"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

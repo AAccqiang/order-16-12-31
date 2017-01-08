@@ -30,6 +30,12 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("loginServlet")
     Call<LoginResult> alter(@Field("name")String name,@Field("opaw")String opaw,@Field("npaw")String npaw);
-    @GET("{imgPath}")
-    Call<String> loadImg(@Path("imgPath") String imgPath);
+
+    @FormUrlEncoded
+    @POST("orderServlet")
+    Call<LoginResult> submit(@Field("list")String json);
+
+
+    @GET("queryAllOreder")
+    Call<LoginResult> queryAll();
 }

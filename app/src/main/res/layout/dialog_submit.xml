@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+
+
+
+    >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/main_color"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:background="@color/main_color"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="确定递交订单"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="12dp"
+                />
+        </FrameLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:id="@+id/alter_tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/font_color"
+            android:text="员工账号 : 250"/>
+
+        <TextView
+            android:id="@+id/alter_tv_orderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/font_color"
+            android:text="流水号 : 1231231231231231231231"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ddd"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/alter_btn_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="取消"
+            android:textColor="@color/main_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="#ddd"
+            />
+
+        <Button
+            android:id="@+id/alter_btn_submit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="确定"
+            android:textColor="@color/main_color"/>
+    </LinearLayout>
+
+</LinearLayout>

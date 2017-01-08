@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/anctionBar_height"
+        android:background="@color/actionBar_color"
+        android:gravity="center_vertical"
+        android:paddingRight="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:padding="5dp"
+            android:src="@mipmap/menu_back"
+            />
+
+
+        <TextView
+            android:id="@+id/os_selectBill"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="查单"
+            android:layout_toRightOf="@id/btn_back"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            />
+        <TextView
+            android:id="@+id/os_changTable"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="换台"
+            android:gravity="center"
+            android:layout_toRightOf="@id/os_selectBill"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            />
+
+        <TextView
+            android:id="@+id/os_combineable"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="并台"
+            android:gravity="center"
+            android:layout_toRightOf="@id/os_changTable"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            />
+
+        <TextView
+            android:id="@+id/os_update"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="数据更新"
+            android:gravity="center"
+            android:layout_toRightOf="@id/os_combineable"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            />
+
+
+        <EditText
+            android:layout_width="130dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:alpha="0.7"
+            android:background="@drawable/btn_bg_no"
+            android:padding="5dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="11sp"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="3dp"
+            android:background="@null"
+            android:src="@mipmap/menu_select"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
+                android:layout_height="match_parent"
+                android:text="流水号"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="服务员"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="桌号"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="日期"
+                android:gravity="center"/>
+            
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单详情"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="30dp"
+
+
+         />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ddd"
+        />
+
+
+    <ExpandableListView
+        android:id="@+id/expandableList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></ExpandableListView>
+
+
+
+</LinearLayout>

@@ -3,8 +3,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@mipmap/menu_bg"
-
               android:orientation="vertical">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,11 +16,11 @@
 
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
-            android:padding="5dp"
+            android:padding="11dp"
             android:src="@mipmap/menu_back"
 
             />
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/btn_back"
+            android:layout_toRightOf="@+id/btn_back"
             android:background="@drawable/selecet_btn_queren"
             android:padding="7dp"
             android:text="login"
@@ -86,8 +86,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-
-
             />
 
 
@@ -125,19 +123,16 @@
                     android:layout_marginRight="4dp"
                     android:text="客人数:"/>
 
-                <EditText
+                <Button
                     android:id="@+id/menu_right_num"
                     android:layout_width="25dp"
                     android:layout_height="18dp"
                     android:layout_marginRight="4dp"
                     android:layout_toRightOf="@id/textzz"
                     android:background="@drawable/btn_bg_no"
-                    android:inputType="number"
-                    android:maxLength="1"
                     android:paddingBottom="2dp"
-                    android:paddingLeft="9dp"
-                    android:paddingTop="3dp"
-                    android:textColor="@android:color/black"
+                    android:paddingTop="1dp"
+                    android:textColor="@color/font_color"
                     android:textSize="11sp"
                     android:textStyle="bold"
                     />
@@ -161,7 +156,8 @@
                     android:background="@drawable/btn_bg_no"
                     android:prompt="@string/tableName"
                     android:spinnerMode="dialog"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/font_color"
+
                     android:textStyle="bold"/>
 
             </RelativeLayout>
@@ -174,14 +170,21 @@
                 android:background="@android:color/darker_gray"/>
 
 
-            <ExpandableListView
-                android:id="@+id/edListView"
+
+                <ExpandableListView
+                    android:id="@+id/edListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
+
+
+     <!--       <android.support.v7.widget.RecyclerView
+                android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-
-                />
-
+                android:layout_weight="1"></android.support.v7.widget.RecyclerView>
+-->
 
             <View
                 android:layout_width="match_parent"
@@ -197,21 +200,24 @@
                 >
 
                 <TextView
+                    android:id="@+id/tv_menu_num"
                     style="@style/menu_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="共6份"
+                    android:text="共0份"
                     />
 
                 <TextView
+                    android:id="@+id/tv_menu_numPay"
                     style="@style/menu_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="总价格：1500元"/>
+                    android:text="总价格：0.00元"/>
             </RelativeLayout>
 
             <Button
+                android:id="@+id/btn_down"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginBottom="8dp"
@@ -220,11 +226,14 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/selector_btn_login"
                 android:text="递交"
-                android:textColor="@color/menu_font"/>
+                android:textColor="@color/menu_font"
+              />
 
         </LinearLayout>
 
 
     </LinearLayout>
+
+
 
 </LinearLayout>

@@ -5,5 +5,6 @@ package com.example.administrator.orderapp.http;
  */
 
 public class UrlUtil {
-    public static String BASE = "http://59.110.161.30:8080/order/";
+    public static final String BASE = "http://59.110.161.30:8080/order/";
+
 }

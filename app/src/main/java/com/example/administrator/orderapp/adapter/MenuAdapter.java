@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,8 +17,11 @@ import com.bumptech.glide.Glide;
 import com.example.administrator.orderapp.R;
 import com.example.administrator.orderapp.activity.MenuActivity;
 import com.example.administrator.orderapp.entry.Menus;
+import com.example.administrator.orderapp.entry.MessageEvent;
 import com.example.administrator.orderapp.http.UrlUtil;
 import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +40,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
     private Context mContext;
     private MenuActivity mMenuActivity;
     public MenuAdapter(Context context) {
+        menus.clear();
         mMenuActivity = new MenuActivity();
         mContext = context;
 
@@ -58,15 +63,35 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, final int position) {
         final Menus menu = menus.get(position);
         holder.tvName.setText(menu.getDishName());
         holder.tvPay.setText("￥ " + menu.getPrice() + "/份");
         Picasso.with(mContext).load(UrlUtil.BASE + menu.getImgPath()).into(holder.ivMenu);
 
+        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MessageEvent event = new MessageEvent();
+                event.setType(MessageEvent.TYPE_MENU_FRAGMENT);
+                event.setMenus(menu);
+                EventBus.getDefault().post(event);
+                notifyDataSetChanged();
 
+            }
+        });
         //Glide.with(mContext).load(path).into(holder.ivMenu);
         //Toast.makeText(mContext,path , Toast.LENGTH_SHORT).show();
+
+
+        if (listener != null){
+            holder.ivMenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(holder.itemView,position);
+                }
+            });
+        }
     }
 
     @Override
@@ -81,12 +106,34 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
         @BindView(R.id.btn_add)ImageButton btnAdd;
         @BindView(R.id.tv_menu_pay)TextView tvPay;
 
-        public MyHolder(View itemView) {
+ //       private MyOnItemOnClickListener mMyOnItemOnClickListener;
+
+        public MyHolder(View itemView ) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+  //          this.mMyOnItemOnClickListener = mMyOnItemOnClickListener;
         }
+
+//        @Override
+//        public void onClick(View view) {
+//            mMyOnItemOnClickListener.onItemClick();
+//        }
     }
 
+//    public interface MyOnItemOnClickListener{
+//        void onItemClick();
+//    }
+
+    public interface OnItemClickListener{
+        void onItemClick(View view,int postion);
+
+    }
+
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 
 
 }

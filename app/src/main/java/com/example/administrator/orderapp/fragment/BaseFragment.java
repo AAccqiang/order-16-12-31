@@ -3,21 +3,24 @@ package com.example.administrator.orderapp.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.administrator.orderapp.DB.DBmanager;
 import com.example.administrator.orderapp.R;
 import com.example.administrator.orderapp.activity.MenuActivity;
 import com.example.administrator.orderapp.adapter.MenuAdapter;
 import com.example.administrator.orderapp.entry.Menus;
-import com.example.administrator.orderapp.http.UrlUtil;
 import com.example.administrator.orderapp.util.SpaceItemDecoration;
 import com.squareup.picasso.Picasso;
 
@@ -115,14 +118,27 @@ public abstract class BaseFragment extends Fragment  {
 
     private void setData(){
         //List<Menus> mMenusList = mDBmanager.getDishList();
-        mMenusList = getMenusList();
-        mMenuAdapter.addList(mMenusList);
-        mMenuAdapter.notifyDataSetChanged();
-        Log.e("aa0","----------------"+mMenusList.size());
-        mRecyclerView.setAdapter(mMenuAdapter);
+
+                mMenusList = getMenusList();
+                mMenuAdapter.addList(mMenusList);
+                mMenuAdapter.notifyDataSetChanged();
+                Log.e("aa0","----------------"+mMenusList.size());
+                mRecyclerView.setAdapter(mMenuAdapter);
+
+                mMenuAdapter.setOnItemClickListener(new MenuAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int postion) {
+                        Toast.makeText(getContext(), "点击了" + postion, Toast.LENGTH_SHORT).show();
+                        // new DishFragment().show(getFragmentManager(),"aaa");
+                /*new DishFragment();*/
+                        //  getFragmentManager().beginTransaction().replace(R.id.viewPager,new DishFragment());
+
+                    }
+                });
 
 
     }
+
 
 
 

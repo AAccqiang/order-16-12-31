@@ -91,3 +91,4 @@ insert into dish_list(dish_id,dish_name,price,introduction,dish_class,img_downlo
 insert into dish_list(dish_id,dish_name,price,introduction,dish_class,img_download,img_path) values('000019','瘦肉汤吗',23,'瘦肉汤吗瘦肉汤吗','汤类',1,'images/t4.png')
 
 insert into dish_list(dish_id,dish_name,price,introduction,dish_class,img_download,img_path) values('10002','可乐',5,'可乐可乐','其他',1,"images/drink2.png")
+

@@ -13,26 +13,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         >
-        <activity android:name=".activity.LoginActivity"
-            android:screenOrientation="landscape"
-           >
+        <activity android:name=".activity.LoginActivity"  android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HomeActivity"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".activity.LoginAlterActivity"
-            android:screenOrientation="landscape">
 
+        <activity android:name=".activity.HomeActivity" android:screenOrientation="landscape"
+            android:launchMode="singleTask">
+        </activity>
 
+        <activity android:name=".activity.LoginAlterActivity" android:screenOrientation="landscape">
+        </activity>
 
+        <activity android:name=".activity.MenuActivity"  android:screenOrientation="landscape">
+        </activity>
+
+        <activity android:name=".activity.MenuOrderActivity"  android:screenOrientation="landscape">
+        </activity>
+
+        <activity android:name=".activity.OrderScheduleActivity" android:screenOrientation="landscape">
 
         </activity>
-        <activity android:name=".activity.MenuActivity"
-            android:screenOrientation="landscape">
+
+        <activity android:name=".activity.OrderScheduleDetailActivity" android:screenOrientation="landscape">
 
         </activity>
     </application>

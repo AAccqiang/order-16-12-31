@@ -70,6 +70,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/ll_bgMain"
         >
 
         <!--<ScrollView-->
@@ -90,6 +91,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_bgRight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
@@ -135,6 +137,7 @@
                     android:textColor="@color/font_color"
                     android:textSize="11sp"
                     android:textStyle="bold"
+
                     />
 
                 <TextView
@@ -148,20 +151,41 @@
                     android:text="餐桌号:"/>
 
 
-                <Spinner
-                    android:id="@+id/spinner"
+                <!--<Spinner-->
+                    <!--android:id="@+id/spinner"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="18dp"-->
+                    <!--android:layout_toRightOf="@id/textzzz"-->
+                    <!--android:background="@drawable/btn_bg_no"-->
+                    <!--android:prompt="@string/tableName"-->
+                    <!--android:spinnerMode="dialog"-->
+                    <!--android:textColor="@color/font_color"-->
+
+                    <!--android:textStyle="bold"/>-->
+                <Button
+                    android:id="@+id/btn_table"
                     android:layout_width="25dp"
                     android:layout_height="18dp"
                     android:layout_toRightOf="@id/textzzz"
                     android:background="@drawable/btn_bg_no"
-                    android:prompt="@string/tableName"
-                    android:spinnerMode="dialog"
+                    android:textSize="11sp"
                     android:textColor="@color/font_color"
-
                     android:textStyle="bold"/>
 
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/darker_gray"/>
+
+            <ExpandableListView
+                android:id="@+id/edListView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
 
             <View
                 android:layout_width="match_parent"
@@ -170,26 +194,14 @@
                 android:background="@android:color/darker_gray"/>
 
 
-
-                <ExpandableListView
-                    android:id="@+id/edListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
-
-
-     <!--       <android.support.v7.widget.RecyclerView
-                android:id="@+id/listView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"></android.support.v7.widget.RecyclerView>
+            <!--       <android.support.v7.widget.RecyclerView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></android.support.v7.widget.RecyclerView>
 -->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -213,7 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="总价格：0.00元"/>
+                    android:text="总价格：0元"/>
             </RelativeLayout>
 
             <Button
@@ -229,7 +241,8 @@
                 android:textColor="@color/menu_font"
               />
 
-        </LinearLayout>
+        </LinearLayout
+            >
 
 
     </LinearLayout>

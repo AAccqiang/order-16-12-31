@@ -81,6 +81,7 @@
             />
 
         <ImageButton
+            android:id="@+id/os_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -150,6 +151,7 @@
         android:id="@+id/expandableList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
         ></ExpandableListView>
 
 

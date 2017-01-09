@@ -14,6 +14,17 @@ public class MessageEvent {
     //visitor确认后的事件
     public static final int TYPE_DIALOG= 4;
 
+    //启动备注碎片
+    public static final int TYPE_DIALOG_REMARK = 5;
+
+    //备注碎片返回值
+    public static final int TYPE_DIALOG_REMARK_RETURN = 6;
+
+    //菜详情
+    public static final int TYPE_DIALOG_MENU = 7;
+    //桌号返回值
+    public static final int TYPE_DIALOG_TABLE = 8;
+
     private int type;
     private Menus mMenus;
 
@@ -22,6 +33,19 @@ public class MessageEvent {
     private boolean isLorR;
     private int typeNum;
 
+    //设置备注用的
+    private String remark;
+
+
+
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public int getTypeNum() {
         return typeNum;

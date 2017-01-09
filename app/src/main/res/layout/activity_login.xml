@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/login_bg">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/ll_main"
+              android:background="@mipmap/login_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/logon_bg_transparent"
-        android:layout_marginTop="@dimen/login_bg_transparent_tOrB"
         android:layout_marginBottom="@dimen/login_bg_transparent_tOrB"
-        android:layout_marginRight="@dimen/login_bg_transparent_LOrR"
         android:layout_marginLeft="@dimen/login_bg_transparent_LOrR"
+        android:layout_marginRight="@dimen/login_bg_transparent_LOrR"
+        android:layout_marginTop="@dimen/login_bg_transparent_tOrB"
+        android:background="@drawable/logon_bg_transparent"
         android:orientation="vertical"
         >
+
         <ImageView
 
-            android:layout_marginTop="40dp"
             android:layout_width="160dp"
             android:layout_height="55dp"
-            android:background="@mipmap/login_logo"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:background="@mipmap/login_logo"
             android:scaleType="centerCrop"
 
 
@@ -29,61 +31,61 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="28dp"
             android:background="@drawable/logon_username_transparent"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/login_user"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="6dp"
+                android:src="@mipmap/login_user"
                 />
 
             <EditText
                 android:id="@+id/lg_et_username"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:hint="用户名"
-                android:textSize="@dimen/et_size"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1"
                 android:background="@null"
-                android:textColorHint="@color/login_user"
-                android:textColor="@color/login_user"
+                android:hint="用户名"
                 android:text="login02"
-                android:layout_marginLeft="6dp"/>
+                android:textColor="@color/login_user"
+                android:textColorHint="@color/login_user"
+                android:textSize="@dimen/et_size"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="17dp"
-            android:background="@drawable/logon_username_transparent"
-            android:layout_gravity="center_horizontal">
+            android:background="@drawable/logon_username_transparent">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/login_mima"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="9dp"
+                android:src="@mipmap/login_mima"
                 />
 
             <EditText
                 android:id="@+id/lg_et_password"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:hint="密码"
-                android:textSize="@dimen/et_size"
-                android:background="@null"
                 android:layout_marginLeft="10dp"
-                android:textColorHint="@color/login_user"
-                android:textColor="@color/login_user"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="密码"
                 android:inputType="textPassword"
                 android:text="123456"
+                android:textColor="@color/login_user"
+                android:textColorHint="@color/login_user"
+                android:textSize="@dimen/et_size"
                 />
 
         </LinearLayout>
@@ -97,7 +99,6 @@
             android:background="@drawable/selector_btn_login"
             android:text="确定"
             android:textColor="@android:color/white"/>
-
 
 
     </LinearLayout>

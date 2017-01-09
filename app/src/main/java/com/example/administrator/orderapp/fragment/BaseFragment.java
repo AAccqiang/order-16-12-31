@@ -125,16 +125,18 @@ public abstract class BaseFragment extends Fragment  {
                 Log.e("aa0","----------------"+mMenusList.size());
                 mRecyclerView.setAdapter(mMenuAdapter);
 
-                mMenuAdapter.setOnItemClickListener(new MenuAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int postion) {
-                        Toast.makeText(getContext(), "点击了" + postion, Toast.LENGTH_SHORT).show();
-                        // new DishFragment().show(getFragmentManager(),"aaa");
-                /*new DishFragment();*/
-                        //  getFragmentManager().beginTransaction().replace(R.id.viewPager,new DishFragment());
 
-                    }
-                });
+        //接口会掉
+//                mMenuAdapter.setOnItemClickListener(new MenuAdapter.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int postion) {
+//                        Toast.makeText(getContext(), "点击了" + postion, Toast.LENGTH_SHORT).show();
+//                        // new DishFragment().show(getFragmentManager(),"aaa");
+//                /*new DishFragment();*/
+//                        //  getFragmentManager().beginTransaction().replace(R.id.viewPager,new DishFragment());
+//
+//                    }
+//                });
 
 
     }

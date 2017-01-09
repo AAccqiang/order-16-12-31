@@ -39,6 +39,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
 
     private Context mContext;
     private MenuActivity mMenuActivity;
+
     public MenuAdapter(Context context) {
         menus.clear();
         mMenuActivity = new MenuActivity();
@@ -46,20 +47,20 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
 
     }
 
-    public void clearList(){
+    public void clearList() {
         menus.clear();
         notifyDataSetChanged();
     }
 
-    public void addList(List<Menus> list){
+    public void addList(List<Menus> list) {
         menus.addAll(list);
         notifyDataSetChanged();
     }
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_menu_item,parent,false);
-        return  new MyHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_menu_item, parent, false);
+        return new MyHolder(view);
     }
 
     @Override
@@ -84,14 +85,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
         //Toast.makeText(mContext,path , Toast.LENGTH_SHORT).show();
 
 
-        if (listener != null){
-            holder.ivMenu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemClick(holder.itemView,position);
-                }
-            });
-        }
+        holder.ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MessageEvent messageEvent = new MessageEvent();
+                messageEvent.setType(MessageEvent.TYPE_DIALOG_MENU);
+                messageEvent.setMenus(menu);
+                EventBus.getDefault().post(messageEvent);
+            }
+        });
     }
 
     @Override
@@ -100,18 +102,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
     }
 
 
-    class MyHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.iv_menu) ImageView ivMenu;
-        @BindView(R.id.tv_menu_name)TextView tvName;
-        @BindView(R.id.btn_add)ImageButton btnAdd;
-        @BindView(R.id.tv_menu_pay)TextView tvPay;
+    class MyHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_menu)
+        ImageView ivMenu;
+        @BindView(R.id.tv_menu_name)
+        TextView tvName;
+        @BindView(R.id.btn_add)
+        ImageButton btnAdd;
+        @BindView(R.id.tv_menu_pay)
+        TextView tvPay;
 
- //       private MyOnItemOnClickListener mMyOnItemOnClickListener;
+        //       private MyOnItemOnClickListener mMyOnItemOnClickListener;
 
-        public MyHolder(View itemView ) {
+        public MyHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
-  //          this.mMyOnItemOnClickListener = mMyOnItemOnClickListener;
+            ButterKnife.bind(this, itemView);
+            //          this.mMyOnItemOnClickListener = mMyOnItemOnClickListener;
         }
 
 //        @Override
@@ -124,14 +130,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
 //        void onItemClick();
 //    }
 
-    public interface OnItemClickListener{
-        void onItemClick(View view,int postion);
+    public interface OnItemClickListener {
+        void onItemClick(View view);
 
     }
 
     private OnItemClickListener listener;
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 

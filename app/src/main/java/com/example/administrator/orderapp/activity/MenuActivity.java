@@ -9,12 +9,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +30,8 @@ import com.example.administrator.orderapp.fragment.MenuHotFragment;
 import com.example.administrator.orderapp.fragment.MenuMainFragment;
 import com.example.administrator.orderapp.fragment.MenuOtherFragment;
 import com.example.administrator.orderapp.fragment.MenuSoupFragment;
+import com.example.administrator.orderapp.fragment.dialog.MenuDetailFragment;
+import com.example.administrator.orderapp.fragment.dialog.TableFragment;
 import com.example.administrator.orderapp.fragment.dialog.VisitorFragment;
 import com.example.administrator.orderapp.util.SharedPreferUtil;
 
@@ -75,8 +77,8 @@ public class MenuActivity extends FragmentActivity {
 
     @BindView(R.id.viewPager)
     ViewPager viewPager;
-    @BindView(R.id.spinner)
-    Spinner mSpinner;
+    //    @BindView(R.id.spinner)
+//    Spinner mSpinner;
     @BindView(R.id.menu_ren)
     TextView tvRen;
 
@@ -86,6 +88,10 @@ public class MenuActivity extends FragmentActivity {
     TextView tvNumPay;
     @BindView(R.id.menu_right_num)
     Button mMenuRightNum;
+    @BindView(R.id.ll_bgMain)
+    LinearLayout mLlBgMain;
+    @BindView(R.id.btn_table)
+    Button mBtnTable;
 
 
     private DBmanager mDBmanager;
@@ -95,6 +101,7 @@ public class MenuActivity extends FragmentActivity {
 
     private ExpandableListView expandableListView;
     private int mTableNum;
+    private Menus mMenuPositity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +113,7 @@ public class MenuActivity extends FragmentActivity {
         expandableListView = (ExpandableListView) findViewById(R.id.edListView);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(listener);
-        setTableSpinner();
+        //       setTableSpinner();
 
         String name = SharedPreferUtil.getName(this);
         tvRen.setText(name);
@@ -122,15 +129,15 @@ public class MenuActivity extends FragmentActivity {
 
     //桌号
     // TODO: 2016/12/29 0029 桌号方式推出做（弹框）
-    private void setTableSpinner() {
-        mTableBeanList = mDBmanager.getTableNum();
-        mTableAdapter = new TableAdapter(this);
-        mTableAdapter.addList(mTableBeanList);
-        mTableAdapter.notifyDataSetChanged();
-
-        mSpinner.setAdapter(mTableAdapter);
-
-    }
+//    private void setTableSpinner() {
+//        mTableBeanList = mDBmanager.getTableNum();
+//        mTableAdapter = new TableAdapter(this);
+//        mTableAdapter.addList(mTableBeanList);
+//        mTableAdapter.notifyDataSetChanged();
+//
+//  //      mSpinner.setAdapter(mTableAdapter);
+//
+//    }
 
 
     private FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -283,6 +290,10 @@ public class MenuActivity extends FragmentActivity {
     }
 
 
+    public void setVisible() {
+        mLlBgMain.setVisibility(View.VISIBLE);
+    }
+
 
     @Override
     protected void onStop() {
@@ -294,9 +305,15 @@ public class MenuActivity extends FragmentActivity {
     List<Menus> list = new ArrayList<>();
 
     String visitorNum;//桌位数
+
     public void setVisitorNum(String visitorNum) {
         this.visitorNum = visitorNum;
     }
+
+    public Menus getMenu() {
+        return mMenuPositity;
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void switchFragment(MessageEvent event) {
         switch (event.getType()) {
@@ -344,9 +361,22 @@ public class MenuActivity extends FragmentActivity {
 
                 break;
             case MessageEvent.TYPE_DIALOG:
-                Log.e("visitorNum",visitorNum);
+                Log.e("visitorNum", visitorNum);
                 mMenuRightNum.setText(visitorNum);
                 break;
+
+            case MessageEvent.TYPE_DIALOG_MENU:
+                new MenuDetailFragment(this).show(getSupportFragmentManager(), "za");
+                mMenuPositity = event.getMenus();
+                mLlBgMain.setVisibility(View.GONE);
+                break;
+
+            case MessageEvent.TYPE_DIALOG_TABLE:
+                int num = event.getNum();
+                mTableNum = num;
+                mBtnTable.setText(num + "");
+                break;
+
         }
         tvNum.setText("共" + list.size() + "份");
         int total = 0;
@@ -357,39 +387,42 @@ public class MenuActivity extends FragmentActivity {
         tvNumPay.setText("总价格：" + total + "元  ");
     }
 
+
     //保存桌号,客人数,菜图片String路径集合“,”分开
     private void saveTablenumAndVisitornum() {
         StringBuffer sb = new StringBuffer();
-        for(int i = 0;i < list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             String a = list.get(i).getImgPath();
-            if(i != (list.size() -1)){
+            if (i != (list.size() - 1)) {
                 sb.append(a + ",");
-            }else{
+            } else {
                 sb.append(a);
             }
         }
 
-        SharedPreferUtil.saveStringImgPath(this,sb.toString());
+        SharedPreferUtil.saveStringImgPath(this, sb.toString());
         SharedPreferUtil.saveTable(this, mTableNum + "");
-        SharedPreferUtil.saveVisitorNum(this,visitorNum + "");
+        SharedPreferUtil.saveVisitorNum(this, visitorNum + "");
     }
 
 
     //下单 传递去菜单页面
     @OnClick(R.id.btn_down)
     public void down() {
-        if(list.size() == 0){
+        if (list.size() == 0) {
             Toast.makeText(this, "选菜后再点我吧~", Toast.LENGTH_SHORT).show();
             return;
         }
         String n = mMenuRightNum.getText().toString();
-        if(n.equals("") || n == null){
-            Toast.makeText(this, "亲,客人都还没添加~", Toast.LENGTH_SHORT).show();
+
+        String aa =mBtnTable.getText().toString();
+        if(TextUtils.isEmpty(aa) || TextUtils.isEmpty(n)){
+            Toast.makeText(this, "亲,客人数或桌号还没添加~", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        long a = mSpinner.getSelectedItemId();
-        mTableNum = mTableBeanList.get((int) a).getNum();
+        // TODO: 2017/1/9 0009 sping
+//        long a = mSpinner.getSelectedItemId();
+//        mTableNum = mTableBeanList.get((int) a).getNum();
 
         getObjId();
         saveTablenumAndVisitornum();//保存客人数 桌号
@@ -432,13 +465,22 @@ public class MenuActivity extends FragmentActivity {
         return orderId;
     }
 
-    public String getOrderId() {
-        return orderId;
-    }
 
-    @OnClick(R.id.menu_right_num)
-    public void onClick() {
-        new VisitorFragment(this).show(getSupportFragmentManager(), "aa");
+
+
+    @OnClick({R.id.menu_right_num, R.id.btn_table})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.menu_right_num:
+
+                new VisitorFragment(this).show(getSupportFragmentManager(), "aa");
+                break;
+            case R.id.btn_table:
+                new TableFragment(this).show(getSupportFragmentManager(), "vvv");
+                mLlBgMain.setVisibility(View.GONE);
+                break;
+        }
+
     }
 
 

@@ -3,6 +3,7 @@ package com.example.administrator.orderapp.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.administrator.orderapp.DB.DBmanager;
 import com.example.administrator.orderapp.R;
 import com.example.administrator.orderapp.entry.Menus;
 import com.example.administrator.orderapp.entry.MessageEvent;
+import com.example.administrator.orderapp.fragment.dialog.RemarkFragment;
 import com.example.administrator.orderapp.http.UrlUtil;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +49,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyHolder> {
         notifyDataSetChanged();
     }
 
+    public void addList(List<Menus> s){
+        mMenusList.addAll(s);
+        notifyDataSetChanged();
+    }
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.layout_menu_order_item, parent, false);
@@ -136,13 +142,33 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyHolder> {
             }
         });
 
+
+        holder.btnRemark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MessageEvent s  = new MessageEvent();
+                s.setType(MessageEvent.TYPE_DIALOG_REMARK);
+                s.setMenus(menus);
+                EventBus.getDefault().post(s);
+            }
+        });
 //        String gg = holder.btnNum.getText().toString();
 //        int g = Integer.parseInt(gg);
+
+        if(TextUtils.isEmpty(menus.getRemark())){
+            holder.btnRemark.setText("暂无备注");
+        }else {
+            holder.btnRemark.setText(menus.getRemark());
+        }
+
+
 
         menus.setDishNum(holder.btnNum.getText().toString());
         menus.setRemark("");
 
     }
+
+
 
     @Override
     public int getItemCount() {

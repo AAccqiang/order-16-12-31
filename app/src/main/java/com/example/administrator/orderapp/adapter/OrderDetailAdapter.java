@@ -16,6 +16,7 @@ import com.example.administrator.orderapp.entry.Menus;
 import com.example.administrator.orderapp.entry.MessageEvent;
 import com.example.administrator.orderapp.entry.Order;
 import com.example.administrator.orderapp.http.UrlUtil;
+import com.pkmmte.view.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,29 +32,14 @@ import butterknife.ButterKnife;
  */
 
 public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.MyHolder> {
-    private List<List<Order>> mOrderList;
-
+    private List<Order> mOrderList;
     private Context mContext;
-    private DBmanager mDBmanager;
-    List<String> groupList;
-    private List<String> imgPathList = new ArrayList<>();
 
-    public OrderDetailAdapter(Context context,List<String> groupList, List<List<Order>> mOrderList) {
 
-        this.groupList = groupList;
+    public OrderDetailAdapter(Context context,List<Order> mOrderList) {
         mContext = context;
         this.mOrderList = mOrderList;
-        orders = mOrderList.get(0);
-        mDBmanager = new DBmanager(context);
 
-        for(int i = 0;i < groupList.size();i++){
-            for(Order o : orders){
-                if(groupList.get(i).equals(o.getOrderId())){
-                    imgPathList.add(o.getImgPath());
-                    notifyDataSetChanged();
-                }
-            }
-        }
     }
 
 
@@ -64,37 +50,43 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.order_imageview, parent, false);
-        List<Order> orders = mOrderList.get(0);
-
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_suhedle_detail, parent, false);
         return new MyHolder(view);
     }
-    List<Order> orders;
+   boolean mBoolean = false;
     @Override
     public void onBindViewHolder(final MyHolder holder, final int position) {
+        Order order = mOrderList.get(position);
+        Picasso.with(mContext).load(UrlUtil.BASE + order.getImgPath()).into(holder.mCircularImageView);
+        holder.tvMenuName.setText(order.getMenuName());
 
+        holder.btnQueren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.btnQueren.setBackgroundResource(mBoolean == false ? R.drawable.btn_fen_queren : R.drawable.btn_bg_queren);
 
-        for(int i = 0;i < groupList.size();i++){
-           for(Order o : orders){
-               if(groupList.get(i).equals(o.getOrderId())){
-                   Picasso.with(mContext).load(UrlUtil.BASE + o.getImgPath()).into(holder.iv_icon);
-               }
-           }
-        }
-
-
-
+                if(mBoolean == false){
+                    mBoolean = true;
+                }else {
+                    mBoolean = false;
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return imgPathList.size();
+        return mOrderList.size();
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_usericon)
+        CircularImageView mCircularImageView;
+        @BindView(R.id.tv_menu_name)
+        TextView tvMenuName;
+        @BindView(R.id.btn_queren_no)
+        Button btnQueren;
 
-        @BindView(R.id.iv_imageView)
-        ImageView iv_icon;
 
         public MyHolder(View itemView) {
             super(itemView);

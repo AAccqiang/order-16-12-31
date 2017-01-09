@@ -104,15 +104,16 @@ public class HomeActivity extends FragmentActivity {
             case R.id.home_btn_menu:
                 intent = new Intent(HomeActivity.this, MenuActivity.class);
                 startActivity(intent);
+
                 break;
             case R.id.home_btn_add:
-
+                Toast.makeText(this, "此功能还没开放,敬请等待下个版本~", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_btn_schedule:
                 queryAllorder();
-
                 break;
             case R.id.home_btn_pay:
+
                 List<Menus> tempDishList = mDBmanager.getTempDishList();
                 for (Menus menus : tempDishList) {
 
@@ -127,45 +128,71 @@ public class HomeActivity extends FragmentActivity {
                 break;
 
             case R.id.home_btn_more:
-
+                Toast.makeText(this, "此功能还没开放,敬请等待下个版本~", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
     private void queryAllorder() {
-        Call<LoginResult> call = mRetrofitClient.httpApi().queryAll();
-        call.enqueue(new Callback<LoginResult>() {
+        new Thread(new Runnable() {
             @Override
-            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                LoginResult result = response.body();
+            public void run() {
+                Call<LoginResult> call = mRetrofitClient.httpApi().queryAll();
+                call.enqueue(new Callback<LoginResult>() {
+                    @Override
+                    public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+                        LoginResult result = response.body();
 
-                if (result.getRt().equals("200")) {
+                        if (result.getRt().equals("200")) {
 
-                    List<String> list = new ArrayList<String>();
+                            List<String> list = new ArrayList<String>();
 
-                    for (int i = 0; i < result.getList().size(); i++) {
-                        list.add(result.getList().get(i).get(0));
+                            for (int i = 0; i < result.getList().size(); i++) {
+                                list.add(result.getList().get(i).get(0));
+                            }
+                            Intent intent = new Intent(HomeActivity.this, OrderScheduleActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putStringArrayList("sche", (ArrayList<String>) list);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                            return;
+                        } else {
+                            Toast.makeText(HomeActivity.this, "暂时没有订单,请下单后再点我吧！", Toast.LENGTH_SHORT).show();
+                        }
+
+                        Log.e("aa", "aaaaaaa");
+                        Log.e("aa", result.toString() + "---");
+
                     }
-                    Intent intent = new Intent(HomeActivity.this, OrderScheduleActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArrayList("sche", (ArrayList<String>) list);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    return;
-                } else {
-                    Toast.makeText(HomeActivity.this, "暂时没有订单！", Toast.LENGTH_SHORT).show();
-                }
 
-                Log.e("aa", "aaaaaaa");
-                Log.e("aa", result.toString() + "---");
-
+                    @Override
+                    public void onFailure(Call<LoginResult> call, Throwable t) {
+                        Log.e("aa", "bbbbbb");
+                    }
+                });
             }
+        }).start();
 
-            @Override
-            public void onFailure(Call<LoginResult> call, Throwable t) {
-                Log.e("aa", "bbbbbb");
-            }
-        });
+    }
+
+    private void twiceExit(){
+        long currentTime = System.currentTimeMillis();
+        if(currentTime - prevTime > 1500){
+            Toast.makeText(HomeActivity.this,"再按一次退出",Toast.LENGTH_SHORT).show();
+            prevTime = currentTime;
+        }else{
+            prevTime = currentTime;
+            finish();
+            System.exit(0);
+        }
+    }
+
+
+    private long prevTime;
+    //当按下back键时会调用该方法
+    @Override
+    public void onBackPressed() {
+            twiceExit();
 
     }
 }

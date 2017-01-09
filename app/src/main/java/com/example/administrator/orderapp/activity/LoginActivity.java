@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.orderapp.R;
 import com.example.administrator.orderapp.entry.LoginResult;
-import com.example.administrator.orderapp.entry.User;
 import com.example.administrator.orderapp.http.HttpManage;
 import com.example.administrator.orderapp.http.RetrofitClient;
 import com.example.administrator.orderapp.util.SharedPreferUtil;
@@ -28,12 +28,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-
 public class LoginActivity extends Activity {
 
-    @BindView(R.id.lg_btn)Button btnLogin;
-    @BindView(R.id.lg_et_username)EditText etUsername;
-    @BindView(R.id.lg_et_password)EditText etPassword;
+    @BindView(R.id.lg_btn)
+    Button btnLogin;
+    @BindView(R.id.lg_et_username)
+    EditText etUsername;
+    @BindView(R.id.lg_et_password)
+    EditText etPassword;
+    @BindView(R.id.ll_main)
+    LinearLayout mLlMain;
 
     private RetrofitClient retrofitClient;
     private ProgressDialog progressDialog;
@@ -49,47 +53,52 @@ public class LoginActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        AlphaAnimation ap = new AlphaAnimation(0, 1.0f);
+        ap.setFillAfter(true);
+        ap.setDuration(3500);
+        mLlMain.setAnimation(ap);
+
     }
 
     @OnClick(R.id.lg_btn)
-    public void login(){
+    public void login() {
         boolean isNet = HttpManage.isNetConnected(this);
-        if(!isNet){
+        if (!isNet) {
             Toast.makeText(this, "亲，你的网络不可用！", Toast.LENGTH_SHORT).show();
             return;
         }
         final String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
-        final  String path =  "loginServlet?category=user&name="+username+"&paw="+password;
-        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+        final String path = "loginServlet?category=user&name=" + username + "&paw=" + password;
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "账号与密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
         showPg();
-        Log.e("aaa",username + "    " + password);
-        Call<LoginResult> call =retrofitClient.httpApi().login(username,password);
+        Log.e("aaa", username + "    " + password);
+        Call<LoginResult> call = retrofitClient.httpApi().login(username, password);
         call.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                 LoginResult loginResult = response.body();
 
-                if(response.isSuccessful()){
-                    if(loginResult.getRt().equals("200")){
+                if (response.isSuccessful()) {
+                    if (loginResult.getRt().equals("200")) {
 
-                        SharedPreferences sharedPreferences = getSharedPreferences("alter",MODE_PRIVATE);
-                        boolean isFirst = sharedPreferences.getBoolean("isFirst",false);
-                        if(!isFirst && username.equals("login03")){
+                        SharedPreferences sharedPreferences = getSharedPreferences("alter", MODE_PRIVATE);
+                        boolean isFirst = sharedPreferences.getBoolean("isFirst", false);
+                        if (!isFirst && username.equals("login03")) {
                             SharedPreferUtil.ifFirstLogin(LoginActivity.this);
                             progressDialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this,LoginAlterActivity.class);
-                            intent.putExtra("username",username);
+                            Intent intent = new Intent(LoginActivity.this, LoginAlterActivity.class);
+                            intent.putExtra("username", username);
                             startActivity(intent);
                             finish();
-                        }else{
+                        } else {
                             progressDialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-                          // intent.putExtra("username",username);
-                            SharedPreferUtil.saveName(LoginActivity.this,username);
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            // intent.putExtra("username",username);
+                            SharedPreferUtil.saveName(LoginActivity.this, username);
                             startActivity(intent);
                             finish();
 
@@ -113,8 +122,8 @@ public class LoginActivity extends Activity {
         });
     }
 
-    private void showPg(){
-        progressDialog = ProgressDialog.show(this,null,"正在登陆");
+    private void showPg() {
+        progressDialog = ProgressDialog.show(this, null, "正在登陆");
         progressDialog.setCancelable(true);
         progressDialog.show();
     }
@@ -122,7 +131,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (progressDialog != null){
+        if (progressDialog != null) {
             progressDialog.dismiss();
         }
 

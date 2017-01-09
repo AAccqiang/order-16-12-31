@@ -20,6 +20,7 @@ import com.example.administrator.orderapp.entry.Menus;
 import com.example.administrator.orderapp.entry.MessageEvent;
 
 import com.example.administrator.orderapp.entry.Order;
+import com.example.administrator.orderapp.fragment.dialog.RemarkFragment;
 import com.example.administrator.orderapp.fragment.dialog.SubmitFragment;
 import com.example.administrator.orderapp.http.RetrofitClient;
 import com.example.administrator.orderapp.util.SharedPreferUtil;
@@ -103,11 +104,6 @@ public class MenuOrderActivity extends FragmentActivity  {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
 
     String orderId;
     public String getOrderId(){
@@ -139,7 +135,6 @@ public class MenuOrderActivity extends FragmentActivity  {
     protected void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
-
     }
 
     @Override
@@ -153,6 +148,8 @@ public class MenuOrderActivity extends FragmentActivity  {
     int tatol;
     int b = 0;
     int c;
+
+    Menus mRemarkMenu;
 
     //EventBus 从适配器OrderAdapter中传递信息
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -190,9 +187,22 @@ public class MenuOrderActivity extends FragmentActivity  {
                     b = 0;
                 }
 
-
+                break;
+            case MessageEvent.TYPE_DIALOG_REMARK:
+                mRemarkMenu= event.getMenus();
+                new RemarkFragment(this).show(getSupportFragmentManager(),"sss");
                 break;
 
+            case MessageEvent.TYPE_DIALOG_REMARK_RETURN:
+                String remark = event.getRemark();
+                for(int i = 0;i < list.size();i++){
+                    if(list.get(i).equals(mRemarkMenu)){
+                        list.get(i).setRemark(remark);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+                break;
         }
     }
     List<Menus> l;
@@ -258,6 +268,7 @@ public class MenuOrderActivity extends FragmentActivity  {
 
 
 
+    //下单
     public void orderSubmit() {
       //  SharedPreferUtil.saveMenu(this,list);
 

@@ -101,6 +101,8 @@ public class SuheduleAdapter  extends BaseExpandableListAdapter   {
         TextView tvOrderId = (TextView) view.findViewById(R.id.tv_orderId);
         tvOrderId.setText(groupList.get(i));
 
+
+
         String name = SharedPreferUtil.getName(context);
         TextView tvName = (TextView) view.findViewById(R.id.tv_name);
         tvName.setText(name);
@@ -123,6 +125,8 @@ public class SuheduleAdapter  extends BaseExpandableListAdapter   {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, OrderScheduleDetailActivity.class);
+                intent.putExtra("thisOrderId",groupList.get(i));
+                Log.e("thisOrderId",groupList.get(i));
                 context.startActivity(intent);
             }
         });
@@ -144,7 +148,7 @@ public class SuheduleAdapter  extends BaseExpandableListAdapter   {
             if(groupList.get(i).equals(order.getOrderId())){
 
                 tvPeople.setText("客人共:"+order.getVisitorNum()+"人");
-                tvMenuNum.setText("菜单共:" + order.getMenuNum() +"份");
+                tvMenuNum.setText("菜单共:" + order.getMenuNum() +"份 (计算了已加份的)");
                 tvMenuPlay.setText("总价格:"+order.getPayNum()+"元");
             }
         }

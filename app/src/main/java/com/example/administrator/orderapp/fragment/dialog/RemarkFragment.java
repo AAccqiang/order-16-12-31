@@ -9,41 +9,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.example.administrator.orderapp.R;
 import com.example.administrator.orderapp.activity.MenuOrderActivity;
-import com.example.administrator.orderapp.util.SharedPreferUtil;
+import com.example.administrator.orderapp.entry.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
+public class RemarkFragment extends DialogFragment {
 
-public class SubmitFragment extends DialogFragment {
-
-    @BindView(R.id.alter_tv_username)
-    TextView mAlterTvUsername;
-    @BindView(R.id.alter_tv_orderId)
-    TextView mAlterTvOrderId;
+    @BindView(R.id.tv_remark)
+    EditText mTvRemark;
     private MenuOrderActivity mMenuOrderActivity;
 
-    public SubmitFragment(MenuOrderActivity menuOrderActivity) {
+    public RemarkFragment(MenuOrderActivity menuOrderActivity) {
         mMenuOrderActivity = menuOrderActivity;
     }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        View view = inflater.inflate(R.layout.dialog_submit, container, false);
+        View view = inflater.inflate(R.layout.dialog_remark, container, false);
         ButterKnife.bind(this, view);
-        String name = SharedPreferUtil.getName(mMenuOrderActivity);
-        mAlterTvUsername.setText("员工账号 : "+name);
-        mAlterTvOrderId.setText("流水号 : "+mMenuOrderActivity.getOrderId());
         return view;
     }
 
@@ -56,8 +52,14 @@ public class SubmitFragment extends DialogFragment {
                 break;
             case R.id.alter_btn_submit:
                 getDialog().dismiss();
-                mMenuOrderActivity.orderSubmit();
+                String remark = mTvRemark.getText().toString();
+                MessageEvent messageEvent = new MessageEvent();
+                messageEvent.setRemark(remark);
+                messageEvent.setType(MessageEvent.TYPE_DIALOG_REMARK_RETURN);
+                EventBus.getDefault().post(messageEvent);
                 break;
         }
     }
+
+
 }

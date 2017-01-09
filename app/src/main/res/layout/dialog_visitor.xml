@@ -8,13 +8,13 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
         android:background="@drawable/ic_clear_black_12dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="15dp"/>
+        android:layout_marginTop="3dp"
+         />
 
     <EditText
         android:id="@+id/et_visitorNum"

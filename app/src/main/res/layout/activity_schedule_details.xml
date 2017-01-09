@@ -15,6 +15,7 @@
         android:orientation="horizontal"
         android:id="@+id/l1">
         <TextView
+            android:id="@+id/detail_tvNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="桌号 : 001"
@@ -24,6 +25,7 @@
             />
 
         <TextView
+            android:id="@+id/detail_tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="服务员：login03"
@@ -33,6 +35,7 @@
             android:layout_marginLeft="16dp"
             />
         <TextView
+            android:id="@+id/detail_tvOrderid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="流水号：1231231231231231231231"
@@ -47,12 +50,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/l1">
-        <include layout="@layout/layout_suhedle_detail"></include>
+        android:layout_below="@+id/l1"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/btn_back">
+        <!--<include layout="@layout/layout_suhedle_detail"></include>-->
 
-        <include layout="@layout/layout_suhedle_detail"></include>
-
-        <include layout="@layout/layout_suhedle_detail"></include>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 
